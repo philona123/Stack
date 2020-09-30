@@ -37,6 +37,74 @@ class operation
 		System.out.println();
 	}
 	//Functions for queue
+	void insertafter(int key,int data)
+	{
+		if(start==null)
+		{
+			System.out.print("EMPTY");
+			return;
+		}
+		Node ptr=start;
+		while(ptr!=null)
+		{
+			if(ptr.data==key)
+			{
+				Node newnode=new Node(data);
+				newnode.next=ptr.next;
+				ptr.next=newnode;
+				return;
+			}
+			ptr=ptr.next;
+		}
+		System.out.print("KEY NOT FOUND");
+	}
+	void insertlast(int data)
+	{
+		Node newnode=new Node(data);
+		if(start==null)
+		{
+			start=newnode;
+			return;
+		}
+		Node ptr=start;
+		while(ptr.next!=null)
+			ptr=ptr.next;
+		ptr.next=newnode;
+	}
+	void deletelast()
+	{
+		if(start==null)
+		{
+			System.out.println("EMPTY");
+			return;
+		}
+		if(start.next==null)
+		{
+			start=null;
+			return;
+		}
+		Node ptr=start;
+		while(ptr.next.next!=null)
+		{
+			ptr=ptr.next;
+		}
+		ptr.next=null;
+	}
+	void deletekey(int key)
+	{
+		Node ptr=start;
+		while(ptr!=null)
+		{
+			if(ptr.next.data==key)
+			{
+				ptr.next=ptr.next.next;
+				return;
+			}
+			ptr=ptr.next;
+		}
+		System.out.println("KEY NOT FOUND");
+	}
+
 }
 class Stack
 {
@@ -64,6 +132,27 @@ class Stack
 				break;
         
 				//case4,5,6,7
+				
+                         case 4:
+				System.out.println("ENTER KEY: ");
+				int key=s.nextInt();
+				System.out.println("ENTER DATA: ");
+				int d=s.nextInt();
+				o.insertafter(key,d);
+				break;
+			case 5:
+				System.out.println("ENTER THE DATA: " );
+				int x=s.nextInt();
+				o.insertlast(x);
+				break;
+			case 6:
+				o.deletelast();
+				break;
+			case 7:
+				System.out.println("ENTER THE KEY: ");
+				int j=s.nextInt();
+				o.deletekey(j);
+				break;
 
 			}
 		}
